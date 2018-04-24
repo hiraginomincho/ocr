@@ -43,10 +43,10 @@ function clear() {
 }
 
 function recognize(image) {
-  clear();
   Tesseract.recognize(image, options)
   .progress(function (p) {
     console.log("progress", p);
+    OCR.reportProgress(p.status);
   })
   .then(function (result) {
     if (showBoundingBoxes) {
@@ -131,6 +131,7 @@ function toggleCameraFacingMode() {
 function recognizeImageData(imageData) {
   if (!isVideoMode) {
     img.onload = function() {
+      clear();
       overlay.width = img.width;
       overlay.height = img.height;
       scale = img.width / img.naturalWidth;
