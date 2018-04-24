@@ -49,6 +49,7 @@ function recognize(image) {
     OCR.reportProgress(p.status);
   })
   .then(function (result) {
+    var textString = "";
     if (showBoundingBoxes) {
       result.words.forEach(function(w) {
         if (w.confidence > confidenceThreshold) {
@@ -65,12 +66,14 @@ function recognize(image) {
             ctx.fillStyle = textColor;
             ctx.fillText(w.text, b.x0 * scale, b.y0 * scale);
           }
+          textString += w.text + " ";
         }
       });
     }
     res = result;
     console.log("result", result);
-    OCR.reportResult(result.text);
+    // OCR.reportResult(result.text);
+    OCR.reportResult(textString);
   });
 }
 
