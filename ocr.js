@@ -162,12 +162,12 @@ function hideImage() {
 
 function setInputMode(inputMode) {
   if (inputMode === "image" && isVideoMode) {
-    ctx.clearRect(0, 0, overlay.width, overlay.height);
+    clear();
     stopVideo();
     isVideoMode = false;
     showImage();
   } else if (inputMode === "video" && !isVideoMode) {
-    ctx.clearRect(0, 0, overlay.width, overlay.height);
+    clear();
     hideImage();
     isVideoMode = true;
     startVideo();
