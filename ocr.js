@@ -1,6 +1,6 @@
 "use strict";
 
-console.log("OCR: Using Tesseract version " + Tesseract.version);
+console.log("OCR: Using Tesseract.js version " + Tesseract.version);
 
 var res;
 
