@@ -70,11 +70,14 @@ function recognize(image) {
     }
     res = result;
     console.log("result", result);
+    OCR.reportResult(result.text);
   });
 }
 
 var overlay = document.createElement("canvas");
 overlay.style.position = "absolute";
+overlay.width = 0;
+overlay.height = 0;
 var ctx = overlay.getContext("2d");
 
 var img = document.createElement("img");
@@ -173,3 +176,12 @@ function setInputMode(inputMode) {
     startVideo();
   }
 }
+
+function setInputWidth(width) {
+  clear();
+  video.width = width;
+  video.height = video.videoHeight * width / video.videoWidth;
+  img.width = width;
+}
+
+OCR.ready();
