@@ -95,7 +95,7 @@ video.setAttribute("playsinline", "");
 video.width = 500;
 video.style.display = "none";
 
-var frontFacing = true;
+var frontFacing = false;
 var isPlaying = false;
 var isVideoMode = false;
 
@@ -183,9 +183,9 @@ function setInputMode(inputMode) {
 
 function setInputWidth(width) {
   clear();
+  img.width = width;
   video.width = width;
   video.height = video.videoHeight * width / video.videoWidth;
-  img.width = width;
 }
 
 OCR.ready();
