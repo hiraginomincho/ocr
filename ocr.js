@@ -85,8 +85,6 @@ var ctx = overlay.getContext("2d");
 
 var img = document.createElement("img");
 img.width = 500;
-
-var isImageShowing = true;
 img.style.display = "block";
 
 var video = document.createElement("video");
@@ -96,7 +94,6 @@ video.width = 500;
 video.style.display = "none";
 
 var frontFacing = false;
-var isPlaying = false;
 var isVideoMode = false;
 
 document.body.appendChild(overlay);
@@ -108,19 +105,17 @@ video.addEventListener("loadedmetadata", function() {
 }, false);
 
 function startVideo() {
-  if (!isPlaying && isVideoMode) {
+  if (isVideoMode) {
     navigator.mediaDevices.getUserMedia({video: {facingMode: frontFacing ? "user" : "environment"}, audio: false})
     .then(stream => (video.srcObject = stream))
     .catch(e => log(e));
-    isPlaying = true;
     video.style.display = "block";
   }
 }
 
 function stopVideo() {
-  if (isPlaying && isVideoMode && video.srcObject) {
+  if (isVideoMode && video.srcObject) {
     video.srcObject.getTracks().forEach(t => t.stop());
-    isPlaying = false;
     video.style.display = "none";
   }
 }
@@ -145,25 +140,11 @@ function recognizeImageData(imageData) {
 }
 
 function recognizeVideoData() {
-  if (isPlaying && isVideoMode) {
+  if (isVideoMode) {
     overlay.width = video.width;
     overlay.height = video.height;
     scale = video.width / video.videoWidth;
     recognize(video);
-  }
-}
-
-function showImage() {
-  if (!isImageShowing && !isVideoMode) {
-    img.style.display = "block";
-    isImageShowing = true;
-  }
-}
-
-function hideImage() {
-  if (isImageShowing) {
-    img.style.display = "none";
-    isImageShowing = false;
   }
 }
 
@@ -172,20 +153,20 @@ function setInputMode(inputMode) {
     clear();
     stopVideo();
     isVideoMode = false;
-    showImage();
+    img.style.display = "block";
   } else if (inputMode === "video" && !isVideoMode) {
     clear();
-    hideImage();
+    img.style.display = "none";
     isVideoMode = true;
     startVideo();
   }
 }
 
-function setInputWidth(width) {
+window.addEventListener("resize", function() {
   clear();
-  img.width = width;
-  video.width = width;
-  video.height = video.videoHeight * width / video.videoWidth;
-}
+  img.width = window.innerWidth;
+  video.width = window.innerWidth;
+  video.height = video.videoHeight * window.innerWidth / video.videoWidth;
+});
 
 OCR.ready();
