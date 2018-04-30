@@ -84,13 +84,13 @@ overlay.height = 0;
 var ctx = overlay.getContext("2d");
 
 var img = document.createElement("img");
-img.width = 500;
+img.width = window.innerWidth;
 img.style.display = "block";
 
 var video = document.createElement("video");
 video.setAttribute("autoplay", "");
 video.setAttribute("playsinline", "");
-video.width = 500;
+video.width = window.innerWidth;
 video.style.display = "none";
 
 var frontFacing = false;
