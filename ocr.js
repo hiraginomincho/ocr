@@ -82,16 +82,21 @@ function filterText() {
 
 function drawBoundingBox(i, label) {
   console.log("drawBoundingBox with i " + i + " and label " + label);
+  console.log("overlay is " + overlay.width + " by " + overlay.height);
   ctx.lineWidth = 4;
   ctx.strokeStyle = boundingBoxColor;
+  console.log(wordList[i].x0 * scale + " " + wordList[i].y0 * scale + " " + (wordList[i].x1 - wordList[i].x0) * scale + " " + (wordList[i].y1 - wordList[i].y0) * scale);
   ctx.strokeRect(wordList[i].x0 * scale, wordList[i].y0 * scale, (wordList[i].x1 - wordList[i].x0) * scale, (wordList[i].y1 - wordList[i].y0) * scale);
   if (label !== "") {
+    console.log("adding label");
     ctx.font = fontSize + "px sans-serif";
     // ctx.textBaseline = "hanging";
     var displayText = label; // wordList[i].word + " - " + wordList[i].confidence.toFixed(1);
     var width = ctx.measureText(displayText).width;
+    console.log("width is " + width);
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(wordList[i].x0 * scale, wordList[i].y0 * scale - fontSize, width, fontSize);
+    console.log(wordList[i].x0 * scale + " " + wordList[i].y0 * scale - fontSize + " " + width + " " + fontSize);
     ctx.fillStyle = textColor;
     ctx.fillText(displayText, wordList[i].x0 * scale, wordList[i].y0 * scale);
   }
@@ -235,6 +240,7 @@ function setInputMode(inputMode) {
 }
 
 window.addEventListener("resize", function() {
+  console.log("in resize");
   clear();
   img.width = window.innerWidth;
   video.width = window.innerWidth;
