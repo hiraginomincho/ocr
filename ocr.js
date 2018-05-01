@@ -247,8 +247,10 @@ window.addEventListener("resize", function() {
   img.width = window.innerWidth;
   video.width = window.innerWidth;
   video.height = video.videoHeight * window.innerWidth / video.videoWidth;
-  overlay.width = video.width;
-  overlay.height = video.height;
+  if (inputMode === "video") {
+    overlay.width = video.width;
+    overlay.height = video.height;
+  }
   scale = video.width / video.videoWidth;
 });
 
