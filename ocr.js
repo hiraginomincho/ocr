@@ -81,6 +81,7 @@ function filterText() {
 }
 
 function drawBoundingBox(i, label) {
+  console.log("drawBoundingBox with i " + i + " and label " + label);
   ctx.lineWidth = 4;
   ctx.strokeStyle = boundingBoxColor;
   ctx.strokeRect(wordList[i].x0 * scale, wordList[i].y0 * scale, (wordList[i].x1 - wordList[i].x0) * scale, (wordList[i].y1 - wordList[i].y0) * scale);
