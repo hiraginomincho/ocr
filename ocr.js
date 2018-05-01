@@ -210,8 +210,10 @@ function recognizeImageData(imageData) {
   if (!isVideoMode) {
     img.onload = function() {
       clear();
+      console.log("before: overlay is " + overlay.width + " by " + overlay.height);
       overlay.width = img.width;
       overlay.height = img.height;
+      console.log("after: overlay is " + overlay.width + " by " + overlay.height);
       scale = img.width / img.naturalWidth;
       recognize(img);
     }
