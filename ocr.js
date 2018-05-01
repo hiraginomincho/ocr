@@ -91,7 +91,7 @@ function drawBoundingBox(i, label) {
     console.log("adding label");
     ctx.font = fontSize + "px sans-serif";
     // ctx.textBaseline = "hanging";
-    var displayText = label; // wordList[i].word + " - " + wordList[i].confidence.toFixed(1);
+    var displayText = decodeURIComponent(label); // wordList[i].word + " - " + wordList[i].confidence.toFixed(1);
     var width = ctx.measureText(displayText).width;
     console.log("width is " + width);
     ctx.fillStyle = "#ffffff";
