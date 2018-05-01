@@ -85,7 +85,11 @@ function drawBoundingBox(i, label) {
   console.log("overlay is " + overlay.width + " by " + overlay.height);
   ctx.lineWidth = 4;
   ctx.strokeStyle = boundingBoxColor;
-  console.log(wordList[i].x0 * scale + " " + wordList[i].y0 * scale + " " + (wordList[i].x1 - wordList[i].x0) * scale + " " + (wordList[i].y1 - wordList[i].y0) * scale);
+  console.log(wordList[i].x0 * scale);
+  console.log(wordList[i].y0 * scale);
+  console.log((wordList[i].x1 - wordList[i].x0) * scale);
+  console.log((wordList[i].y1 - wordList[i].y0) * scale);
+  console.log("--");
   ctx.strokeRect(wordList[i].x0 * scale, wordList[i].y0 * scale, (wordList[i].x1 - wordList[i].x0) * scale, (wordList[i].y1 - wordList[i].y0) * scale);
   if (label !== "") {
     console.log("adding label");
@@ -96,7 +100,6 @@ function drawBoundingBox(i, label) {
     console.log("width is " + width);
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(wordList[i].x0 * scale, wordList[i].y0 * scale - fontSize, width, fontSize);
-    console.log(wordList[i].x0 * scale + " " + wordList[i].y0 * scale - fontSize + " " + width + " " + fontSize);
     ctx.fillStyle = textColor;
     ctx.fillText(displayText, wordList[i].x0 * scale, wordList[i].y0 * scale);
   }
@@ -250,8 +253,8 @@ window.addEventListener("resize", function() {
   if (isVideoMode) {
     overlay.width = video.width;
     overlay.height = video.height;
+    scale = video.width / video.videoWidth;
   }
-  scale = video.width / video.videoWidth;
 });
 
 OCR.ready();
