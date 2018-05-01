@@ -247,7 +247,7 @@ window.addEventListener("resize", function() {
   img.width = window.innerWidth;
   video.width = window.innerWidth;
   video.height = video.videoHeight * window.innerWidth / video.videoWidth;
-  if (inputMode === "video") {
+  if (isVideoMode) {
     overlay.width = video.width;
     overlay.height = video.height;
   }
