@@ -151,6 +151,7 @@ function recognize(image) {
     filterText();
     res = result;
     console.log("OCR: result is " + text);
+    clear();
     OCR.gotText(text);
     OCR.gotFilteredText(filteredText);
     OCR.gotWords(JSON.stringify(listWords()));
