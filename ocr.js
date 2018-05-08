@@ -247,7 +247,7 @@ function setInputMode(inputMode) {
 
 window.addEventListener("resize", function() {
   console.log("in resize");
-  clear();
+  // clear();
   img.width = window.innerWidth;
   video.width = window.innerWidth;
   video.height = video.videoHeight * window.innerWidth / video.videoWidth;
