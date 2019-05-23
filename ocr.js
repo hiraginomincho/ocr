@@ -192,7 +192,7 @@ function startVideo() {
   if (isVideoMode) {
     navigator.mediaDevices.getUserMedia({video: {facingMode: frontFacing ? "user" : "environment"}, audio: false})
     .then(stream => (video.srcObject = stream))
-    .catch(e => log(e));
+    .catch(e => console.log(e));
     video.style.display = "block";
   }
 }
